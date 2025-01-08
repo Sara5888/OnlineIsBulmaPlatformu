@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazılım Geliştirici Başvurusu</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fefbe9;
+            color: #333333;
+        }
+
+        /* Header ve Footer */
+        .header, .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #6a9fb5; /* index sayfasındaki renk */
+            color: white;
+            padding: 15px 40px;
+        }
+
+        .header h2, .footer p {
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            margin-left: 20px;
+            font-size: 1em;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* İçerik */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+        }
+
+        .job-description {
+            margin-top: 30px;
+        }
+
+        .job-description h2 {
+            font-size: 1.5em;
+            color: #4a4a4a;
+        }
+
+        .job-description p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .job-details {
+            margin-top: 20px;
+        }
+
+        .job-details p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        /* Başvuruyu Kabul Et ve Reddet */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .action-button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        /* Güncellenmiş Renkler */
+        .action-button.accept {
+            background-color: #4e7b8d; /* Başvuru Kabul Et Buton Rengi (Doğru Renk) */
+            color: white;
+        }
+
+        .action-button.reject {
+            background-color: #dc3545; /* Başvuru Reddet Buton Rengi (Kırmızı) */
+            color: white;
+        }
+
+        .action-button:hover {
+            opacity: 0.8;
+        }
+
+        /* Durum Mesajları */
+        .status-message {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .status-message.success {
+            color: #28a745;
+        }
+
+        .status-message.error {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h2>Online İş Bulma Platformu</h2>
+        <div class="nav-links">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="about.html">Hakkımızda</a>
+            <a href="contact.html">İletişim</a>
+        </div>
+    </div>
+
+    <!-- Yazılım Geliştirici İş İlanı İçeriği -->
+    <div class="container">
+        <h1>Yazılım Geliştirici Başvurusu</h1>
+
+        <div class="job-description">
+            <h2>İş Tanımı</h2>
+            <p>Şirketimiz için dinamik ve yaratıcı bir Yazılım Geliştirici arıyoruz. Gelişen teknolojiye ayak uydurabilecek, yaratıcı projelerde yer alabilecek ve kodlama konusunda deneyimli bir ekip arkadaşı arıyoruz. Aşağıdaki görevleri yerine getirecek birini arıyoruz:</p>
+            <ul>
+                <li>Yazılım projelerini tasarlamak, geliştirmek ve bakımını yapmak.</li>
+                <li>Veritabanı yönetimi ve entegrasyonlarını sağlamak.</li>
+                <li>Mevcut sistemlerin performansını iyileştirmek.</li>
+                <li>Takım içi ve diğer departmanlarla koordineli çalışmak.</li>
+            </ul>
+        </div>
+
+        <div class="job-details">
+            <h2>Aranan Nitelikler</h2>
+            <p><strong>İstenen Yetenekler:</strong></p>
+            <ul>
+                <li>PHP, JavaScript, Python gibi programlama dillerinde deneyim.</li>
+                <li>Veritabanı yönetim sistemleri hakkında bilgi (MySQL, MongoDB, vb.).</li>
+                <li>Takım çalışmasına yatkınlık.</li>
+                <li>Analitik düşünme yeteneği ve problem çözme becerisi.</li>
+            </ul>
+            <p><strong>İş Yeri:</strong> İstanbul, Türkiye</p>
+            <p><strong>Çalışma Şekli:</strong> Tam Zamanlı</p>
+            <p><strong>İş Başlangıç Tarihi:</strong> 2024-12-01</p>
+        </div>
+
+        <!-- Başvuruyu Kabul Et ve Başvuruyu Reddet Butonları -->
+        <div class="action-buttons">
+            <button class="action-button accept" onclick="acceptApplication()">Başvuruyu Kabul Et</button>
+            <button class="action-button reject" onclick="rejectApplication()">Başvuru Reddet</button>
+        </div>
+
+        <!-- Durum Mesajı -->
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Online İş Bulma Platformu</p>
+        <div class="nav-links">
+            <a href="privacy.html">Gizlilik Politikası</a>
+            <a href="terms.html">Kullanım Şartları</a>
+        </div>
+    </div>
+
+    <script>
+        function acceptApplication() {
+            // Başvuru kabul mesajı ve mail gönderme simülasyonu
+            document.getElementById("statusMessage").innerHTML = "Başvuru kabul edildi, kabul maili gönderildi.";
+            document.getElementById("statusMessage").classList.add("success");
+            document.getElementById("statusMessage").classList.remove("error");
+        }
+
+        function rejectApplication() {
+            // Başvuru reddedildi mesajı ve mail gönderme simülasyonu
+            document.getElementById("statusMessage").innerHTML = "Başvuru reddedildi, red maili gönderildi.";
+            document.getElementById("statusMessage").classList.add("error");
+            document.getElementById("statusMessage").classList.remove("success");
+        }
+    </script>
+</body>
+</html>

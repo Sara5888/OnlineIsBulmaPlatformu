@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kullanıcı Giriş/Kayıt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fefbe9;
+            color: #333;
+            overflow-x: hidden; /* Yatay kaydırmayı engelle */
+        }
+
+        /* Header Düzenlemeleri */
+        .header {
+            width: 100%;
+            background-color: #6a9fb5;
+            color: white;
+            padding: 10px 20px; /* Daha küçük padding */
+            display: flex;
+            justify-content: space-between; /* Sağ ve sol alanları ayırır */
+            align-items: center;
+            box-sizing: border-box; /* Padding'in toplam genişliği etkilememesi için */
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.6em; /* Başlık boyutunu biraz küçültüyoruz */
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: flex-end; /* Menü bağlantılarını sağa hizalar */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            margin-left: 15px; /* Bağlantılar arasında daha küçük boşluk */
+            font-size: 1em; /* Font boyutunu ayarlıyoruz */
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a4a4a;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background-color: #a4c4c7;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .tab-buttons button.active {
+            background-color: #89b0b3;
+        }
+
+        form {
+            display: none;
+            flex-direction: column;
+        }
+
+        form.active {
+            display: flex;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        button.submit {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            background-color: #89b0b3;
+            color: white;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button.submit:hover {
+            background-color: #75a1a4;
+        }
+
+        /* Başarı mesajı */
+        .success-message {
+            color: green;
+            font-size: 1.1em;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Footer Düzenlemeleri */
+        .footer {
+            width: 100%;
+            background-color: #6a9fb5;
+            color: white;
+            padding: 10px 20px; /* Daha küçük padding */
+            display: flex;
+            justify-content: space-between; /* Sol ve sağ alanları ayırır */
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box; /* Padding'in toplam genişliği etkilememesi için */
+        }
+
+        .footer .left {
+            text-align: left; /* Sol tarafa hizalar */
+            font-size: 0.9em; /* Font boyutunu küçültüyoruz */
+        }
+
+        .footer .nav-links {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.9em; /* Footer linkleri için font boyutunu ayarlıyoruz */
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Ana Sayfaya Dön Linki */
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #6a9fb5;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h2>Online İş Bulma Platformu</h2>
+        <div class="nav-links">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="about.html">Hakkımızda</a>
+            <a href="contact.html">İletişim</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Kullanıcı Giriş / Kayıt</h1>
+        <!-- Sekmeler -->
+        <div class="tab-buttons">
+            <button class="active" onclick="showForm('login')">Giriş Yap</button>
+            <button onclick="showForm('register')">Kayıt Ol</button>
+        </div>
+
+        <!-- Giriş Formu -->
+        <form id="login-form" class="active" method="POST">
+            <label for="login-email">E-posta:</label>
+            <input type="email" id="login-email" placeholder="E-posta adresinizi girin" required>
+            <label for="login-password">Şifre:</label>
+            <input type="password" id="login-password" placeholder="Şifrenizi girin" required>
+            <button type="submit" class="submit">Giriş Yap</button>
+        </form>
+
+        <!-- Kayıt Formu -->
+        <form id="register-form">
+            <label for="register-name">Ad Soyad:</label>
+            <input type="text" id="register-name" placeholder="Adınızı ve soyadınızı girin" required>
+            <label for="register-email">E-posta:</label>
+            <input type="email" id="register-email" placeholder="E-posta adresinizi girin" required>
+            <label for="register-password">Şifre:</label>
+            <input type="password" id="register-password" placeholder="Şifrenizi belirleyin" required>
+            <label for="register-confirm-password">Şifre Tekrar:</label>
+            <input type="password" id="register-confirm-password" placeholder="Şifrenizi tekrar girin" required>
+            <button type="submit" class="submit">Kayıt Ol</button>
+            <!-- Başarı mesajı -->
+            <p id="success-message" class="success-message" style="display:none;">Kayıt işleminiz başarıyla tamamlandı!</p>
+        </form>
+
+        <!-- Ana Sayfaya Dön Linki -->
+        <div class="back-link">
+            <a href="index.html">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="left">
+            <p>&copy; 2024 Online İş Bulma Platformu</p>
+        </div>
+        <div class="nav-links">
+            <a href="privacy.html">Gizlilik Politikası</a>
+            <a href="terms.html">Kullanım Şartları</a>
+        </div>
+    </div>
+
+    <script>
+        // Sekme değişimi için JavaScript
+        function showForm(formType) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const buttons = document.querySelectorAll('.tab-buttons button');
+
+            if (formType === 'login') {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                buttons[0].classList.add('active');
+                buttons[1].classList.remove('active');
+            } else {
+                loginForm.classList.remove('active');
+                registerForm.classList.add('active');
+                buttons[0].classList.remove('active');
+                buttons[1].classList.add('active');
+            }
+        }
+
+        // Kayıt formu submit işlemi
+        const registerForm = document.getElementById('register-form');
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+
+            // Şifre kontrolü
+            if (password !== confirmPassword) {
+                alert('Şifreler eşleşmiyor!');
+                return;
+            }
+
+            // Başarı mesajını göster
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+            
+            // Formu temizle
+            registerForm.reset();
+        });
+
+        // Giriş formu submit işlemi
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Basit kullanıcı doğrulaması (gerçek sistemde server ile yapılmalı)
+            if (email === 'user@example.com' && password === 'password123') {
+                // Başarılı giriş: features.html sayfasına yönlendir
+                window.location.href = 'features.html'; // Sayfa yönlendirmesi
+            } else {
+                alert('Geçersiz e-posta veya şifre!');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
